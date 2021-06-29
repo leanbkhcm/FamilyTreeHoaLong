@@ -1,7 +1,7 @@
 import { Link, routes } from '@redwoodjs/router'
 import {
     TimelineMini
-} from "../../../components/Timeline/TimelineMini"
+} from "src/components/Timeline/TimelineMini"
 
 
 
