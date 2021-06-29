@@ -1,8 +1,7 @@
 import { Link, routes } from '@redwoodjs/router'
 import {
     TimelineMini
-} from "src/components/Timeline/TimelineMini"
-
+} from 'src/components/Timeline/TimelineMini'
 
 
 const HomePage = () => {
