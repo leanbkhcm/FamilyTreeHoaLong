@@ -1,17 +1,35 @@
 import { Link, routes } from '@redwoodjs/router'
+import {
+    TimelineMini
+} from 'src/components/Timeline/TimelineMini'
+
 
 const HomePage = () => {
   return (
     <>
       <h1>HomePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/HomePage/HomePage.js</code>
-      </p>
-      <p>
-        My default route is named <code>home</code>, link to me with `
-        <Link to={routes.home()}>Home</Link>`
-      </p>
+      
+    
+    
+    
+      <TimelineMini 
+                            showPillDate
+                                pillDate="2 Days ago"
+                            icon="times-circle"
+                                iconClassName="text-danger"
+                            badgeTitle="Alert"
+                                badgeColor="danger"
+                        />
+                        <TimelineMini 
+                            icon="question-circle"
+                                iconClassName="text-warning"
+                            badgeTitle="Warning"
+                                badgeColor="warning"
+                        />
     </>
+    
+    
+    
   )
 }
 
