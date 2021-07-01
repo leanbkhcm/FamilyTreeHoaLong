@@ -7,33 +7,68 @@ datasource db {
 
 
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  body      String
-  createdAt DateTime @default(now())
-}
-
-
-
-
-
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = "native"
 }
 
+
+
+
+
+
 model Person {
-  personId    Int     @id 
-  //@default(autoincrement())
-  fatherId    Int 
-  motherId    Int 
-  name  	  String
+  personId    	Int     	@id @default(autoincrement())
+  
+  fatherId    	Int
+  father      	Person?		@relation("FatherRelationShip", fields: [fatherId], references: [personId])
+  fatherDefined Person?   	@relation("FatherRelationShip")
+  
+  motherId    	Int
+  mother      	Person?		@relation("MotherRelationShip", fields: [motherId], references: [personId])
+  motherDefined Person?   	@relation("MotherRelationShip")
+  
+  @@unique([fatherId, motherId])
+  
+  name  	  	String
+  husbandMarriage 		Marriages[]	 @relation("HusbandRelationShip")
+  wifeMarriage 			Marriages[]	 @relation("WifeRelationShip")
+  
+  
+  
   //birthDate	  DateTime?
-  email 	  String?  @unique
+  //email 	  String?  @unique
   //marriages   Marriage[]
 }
 
-  //husband      Person     @relation(fields: [husbandId, wifeId], references: [personId])
+  
   //marriageDate	  DateTime?
+
+
+
+
+
+
+
+
+
+model Marriages {
+  marriageId   	Int     	@id @default(autoincrement())
+	
+  husbandId    	Int			
+  husband      	 Person?		@relation("HusbandRelationShip", fields: [husbandId], references: [personId])
+  //husbandDefined Person?   		@relation("HusbandRelationShip") 
+  
+  wifeId    	Int			
+  wife      	Person?		@relation("WifeRelationShip", fields: [wifeId], references: [personId])
+  //wifeDefined 	Person?   	@relation("WifeRelationShip")
+
   //@@unique([husbandId, wifeId])
+  
+  notes			String
+  
+  //birthDate	  DateTime?
+  //email 	  String?  @unique
+  //marriages   Marriage[]
+}
+
